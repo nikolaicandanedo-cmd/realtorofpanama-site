@@ -1,11 +1,538 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Realtor of Panama</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panama Real Estate with the Realtor of Panama</title>
+  <meta name="description" content="Independent real estate brokerage serving the Boquete highlands and Chiriqui province, Panama. ACOBIR member.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy:      #0d1b4b;
+      --navy-mid:  #162262;
+      --gold:      #c9a435;
+      --gold-light:#e2c15a;
+      --black:     #050810;
+      --white:     #f5f5f0;
+      --gray-dim:  #9aa0b0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ── HERO HEADER ── */
+    header {
+      background: linear-gradient(170deg, var(--navy) 0%, #080e25 60%, var(--black) 100%);
+      text-align: center;
+      padding: 64px 24px 52px;
+      border-bottom: 1px solid rgba(201,164,53,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,164,53,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo-wrap img {
+      width: 180px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 4px 20px rgba(201,164,53,0.4));
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-shadow: 0 2px 24px rgba(201,164,53,0.25);
+    }
+
+    .gold-rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      margin: 12px auto;
+      width: 260px;
+    }
+    .gold-rule::before,
+    .gold-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .gold-rule span {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: var(--gray-dim);
+      margin-top: 4px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 28px 72px;
+    }
+
+    section {
+      margin-bottom: 52px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(201,164,53,0.4);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #c8ccd8;
+      font-size: 0.97rem;
+    }
+
+    p strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(13,27,75,0.6) 0%, rgba(5,8,16,0.8) 100%);
+      border: 1px solid rgba(201,164,53,0.28);
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.95rem;
+    }
+    .contact-row:last-child { border-bottom: none; }
+
+    .contact-row .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      min-width: 80px;
+    }
+
+    .contact-row a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-row a:hover { color: var(--gold-light); }
+
+    /* ── BUTTONS ── */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: #fff;
+      padding: 13px 26px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+    /* ── TOP NAV TABS ── */
+    .top-nav {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(201,164,53,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .top-tab {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex: 1;
+      justify-content: center;
+      padding: 13px 10px;
+      text-decoration: none;
+      color: rgba(245,245,240,0.7);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-right: 1px solid rgba(201,164,53,0.2);
+      transition: background 0.2s, color 0.2s;
+      position: relative;
+    }
+
+    .top-tab:last-child { border-right: none; }
+
+    .top-tab::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+
+    .top-tab:hover {
+      background: rgba(201,164,53,0.1);
+      color: var(--gold-light);
+    }
+
+    .top-tab:hover::after { transform: scaleX(1); }
+
+    .top-tab-icon {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      opacity: 0.75;
+    }
+
+    .top-tab:hover .top-tab-icon { opacity: 1; }
+
+    .top-tab-label { white-space: nowrap; }
+
+    .top-tab-arrow {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .top-tab:hover .top-tab-arrow { opacity: 1; }
+
+    @media (max-width: 500px) {
+      .top-tab-icon, .top-tab-arrow { display: none; }
+      .top-tab { font-size: 0.7rem; padding: 12px 6px; }
+    }
+
+    /* ── PARTNER TABS (old, kept for safety) ── */
+    .partner-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .partner-tab {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, rgba(13,27,75,0.5) 0%, rgba(5,8,16,0.7) 100%);
+      border: 1px solid rgba(201,164,53,0.25);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--white);
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+
+    .partner-tab:hover {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(13,27,75,0.8) 0%, rgba(22,34,98,0.6) 100%);
+      transform: translateX(4px);
+      color: var(--white);
+    }
+
+    .tab-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .tab-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .tab-url {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      opacity: 0.8;
+    }
+
+    .tab-arrow {
+      font-size: 1.1rem;
+      color: var(--gold);
+      opacity: 0.7;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
+    }
+
+    .partner-tab:hover .tab-arrow { opacity: 1; }
+
+    /* ── MLS SECTION ── */
+    .mls-block {
+      background: linear-gradient(135deg, var(--navy) 0%, #080e25 100%);
+      border: 1px solid rgba(201,164,53,0.35);
+      border-radius: 10px;
+      padding: 36px 32px;
+      text-align: center;
+    }
+
+    .mls-block p {
+      max-width: 500px;
+      margin: 0 auto 24px;
+      color: #a8aec0;
+    }
+
+    .btn-mls {
+      display: inline-block;
+      padding: 15px 36px;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,164,53,0.3);
+    }
+    .btn-mls:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,164,53,0.45);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(201,164,53,0.2);
+      padding: 24px 28px;
+      text-align: center;
+      color: #555d75;
+      font-size: 0.85rem;
+    }
+    footer a { color: #555d75; text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── ACOBIR BADGE ── */
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .badge {
+      display: inline-block;
+      border: 1px solid rgba(201,164,53,0.4);
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 500px) {
+      .contact-card { padding: 20px 18px; }
+      .contact-row { flex-direction: column; gap: 3px; }
+      .mls-block { padding: 28px 18px; }
+    }
+  </style>
 </head>
 <body>
-<h1>Realtor of Panama</h1>
-<p>Coming soon.</p>
+
+  <!-- ══ TOP NAV TABS ══ -->
+  <nav class="top-nav">
+    <div class="top-nav-inner">
+      <a class="top-tab" href="https://www.boquetebrokers.com" target="_blank" rel="noopener">
+        <svg class="top-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        <span class="top-tab-label">Boquete Brokers</span>
+        <svg class="top-tab-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+      </a>
+      <a class="top-tab" href="https://www.preferpanama.com" target="_blank" rel="noopener">
+        <svg class="top-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3c-2.5 3-4 5.8-4 9s1.5 6 4 9M12 3c2.5 3 4 5.8 4 9s-1.5 6-4 9"/></svg>
+        <span class="top-tab-label">Prefer Panama</span>
+        <svg class="top-tab-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+      </a>
+      <a class="top-tab" href="https://www.nikolaicandanedo.com" target="_blank" rel="noopener">
+        <svg class="top-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span class="top-tab-label">Nikolai Candanedo</span>
+        <svg class="top-tab-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <div class="logo-wrap">
+      <!-- Place your logo file (logo.png) in the same folder as this HTML file -->
+      <img src="logo.png" alt="Realtor of Panama logo">
+    </div>
+    <h1>Realtor of Panama</h1>
+    <div class="gold-rule"><span>Est. 1997</span></div>
+    <p class="tagline">Independent Real Estate Brokerage &nbsp;·&nbsp; Boquete Highlands &amp; Chiriquí Province</p>
+  </header>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- About -->
+    <section>
+      <div class="section-label">About Us</div>
+      <h2>Two Decades of Expertise in Panamanian Real Estate</h2>
+      <p>
+        Nikolai Candanedo began his real estate career in Panama City in 1997 and earned his professional
+        license in 2002, building deep knowledge of Panama's evolving property market over five formative years
+        in the field. In 2014 he relocated to Boquete, Chiriquí — drawn by the region's natural beauty and
+        growing appeal among international buyers — and has since made it his permanent base of operations.
+      </p>
+      <p>
+        Today, with more than two decades of experience and a broad entrepreneurial background that spans
+        real estate development, logistics franchising, and the local tourism industry, Nikolai serves both
+        local residents and foreign investors looking to buy, sell, rent, or manage property throughout
+        Panama City and the scenic Chiriquí highlands. His hands-on knowledge of off-market opportunities
+        and direct relationships with property owners set him apart.
+      </p>
+      <p>
+        Proud ACOBIR member. Listings span the Boquete highlands, Volcán, Cerro Punta, and the broader Chiriquí region.
+      </p>
+      <div class="badge-row"><span class="badge">ACOBIR Member</span></div>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <div class="section-label">Get in Touch</div>
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="label">Email</span>
+          <a href="mailto:info@realtorofpanama.com">info@realtorofpanama.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="label">Phone</span>
+          <a href="tel:+50769346622">+(507) 6934-6622</a>
+        </div>
+        <div class="contact-row">
+          <span class="label">Website</span>
+          <a href="https://www.realtorofpanama.com" target="_blank" rel="noopener">realtorofpanama.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="label">Hours</span>
+          <span style="color:#c8ccd8;">Mon – Fri &nbsp;9 am – 5 pm (Panama time)</span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Area</span>
+          <span style="color:#c8ccd8;">Boquete · Volcán · Cerro Punta · Chiriquí highlands · Panama City</span>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn-whatsapp" href="https://wa.me/50769346622" target="_blank" rel="noopener">
+          <!-- WhatsApp icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.845L.057 23.448a.5.5 0 0 0 .619.612l5.751-1.506A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 0 1-5.032-1.373l-.36-.214-3.733.978.995-3.64-.234-.374A9.863 9.863 0 0 1 2.1 12c0-5.46 4.44-9.9 9.9-9.9S21.9 6.54 21.9 12 17.46 21.9 12 21.9z"/>
+          </svg>
+          Message us on WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- MLS Listings -->
+    <section>
+      <div class="section-label">Property Search</div>
+      <h2>Browse MLS Listings</h2>
+      <div class="mls-frame-wrap">
+        <iframe
+          src="https://propiedades.mlsacobir.com/chiriqui/userId_102869?locale=en_PA"
+          title="MLS ACOBIR – Chiriquí Listings"
+          width="100%"
+          height="800"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+          style="border-radius:8px; border:1px solid rgba(201,164,53,0.3); display:block;">
+        </iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p>&copy; 2026 Realtor of Panama &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a></p>
+  </footer>
+
 </body>
 </html>
